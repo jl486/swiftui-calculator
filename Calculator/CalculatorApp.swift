@@ -15,6 +15,7 @@ struct CalculatorApp: App {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(isDarkMode ? .dark : .light)
+                .environmentObject(ContentView.CalculatorViewModel())
         }
     }
 }
@@ -22,5 +23,6 @@ struct CalculatorApp: App {
 struct CalculatorApp_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(ContentView.CalculatorViewModel())
     }
 }

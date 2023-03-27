@@ -10,11 +10,12 @@ import SwiftUI
 extension ContentView {
     struct CalculatorButton: View {
         
+        @EnvironmentObject private var viewModel: CalculatorViewModel
         let buttonType: CalculatorButtonType
         
         var body: some View {
             Button(buttonType.description) {
-                
+                viewModel.performAction(for: buttonType)
             }
             .buttonStyle(CalculatorButtonStyle(
                 size: calcButtonSize(),

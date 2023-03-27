@@ -56,7 +56,6 @@ enum ColorTheme: String, CaseIterable, Identifiable {
 struct SettingsView: View {
     
     @State private var selectedTheme: ColorTheme = .blue
-    
     @State private var isShowingCustomThemeMenu: Bool = false
     
     var body: some View {

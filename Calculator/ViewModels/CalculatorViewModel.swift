@@ -8,7 +8,38 @@
 import Foundation
 
 extension ContentView {
-    final class ViewModel: ObservableObject {
+    final class CalculatorViewModel: ObservableObject {
+        @Published private var calculator = Calculator()
         
+        var textDisplayed: String {
+            return calculator.textDisplayed
+        }
+        
+        let buttons: [[CalculatorButtonType]] = [
+            [.negative, .percent, .backspace, .operation(.division)],
+            [.digit(.seven), .digit(.eight), .digit(.nine), .operation(.multiplication)],
+            [.digit(.four), .digit(.five), .digit(.six), .operation(.subtraction)],
+            [.digit(.one), .digit(.two), .digit(.three), .operation(.addition)],
+            [.digit(.zero), .decimal, .equals]
+        ]
+        
+        func performAction(for buttonType: CalculatorButtonType) {
+            switch buttonType {
+            case .digit(let digit):
+                calculator.setDigit(digit)
+            case .operation(let operation):
+                calculator.setOperation(operation)
+            case .negative:
+                calculator.toggleSign()
+            case .percent:
+                calculator.setPercent()
+            case .backspace:
+                calculator.backspace()
+            case .decimal:
+                calculator.setDecimal()
+            case .equals:
+                calculator.evaluate()
+            }
+        }
     }
 }
