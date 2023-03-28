@@ -3,7 +3,7 @@
 //  First app
 //
 //  Created by Jonathan Liu on 1/2/23.
-//  Copyright (c) #include <iostream> Corp.
+//
 
 import SwiftUI
 
@@ -23,6 +23,7 @@ struct ContentView: View {
                     buttonPad
                 }
                 .padding(Constants.PADDING)
+                
             }
         }
     }

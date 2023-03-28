@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Utilities {
+public struct Utilities {
     static func createNumberString(for number: Decimal?, withCommas: Bool = false) -> String {
         return (withCommas
                 ? number?.formatted(.number)

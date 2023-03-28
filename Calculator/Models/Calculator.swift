@@ -12,12 +12,6 @@ struct Calculator {
         var addend1: Decimal
         var operation: ArithmeticOperation
         
-        
-        // should move this function somewhere else
-        func appendOperation(number: Decimal, _ operation: ArithmeticOperation) {
-            
-        }
-        
         func evaluate(with addend2: Decimal) -> Decimal {
             switch operation {
             case .addition:
@@ -31,33 +25,40 @@ struct Calculator {
             }
         }
     }
+    
     private var newNumber: Decimal?
+    
     private var expression: ArithmeticExpression?
     private var result: Decimal?
     
-    private var currentNumber: Decimal? { newNumber ?? expression?.addend1 ?? result }
+    private var currentNumber: Decimal? {
+        get { newNumber ?? expression?.addend1 ?? result }
+        set {}
+    }
     
     var textDisplayed: String {
-        return Utilities.createNumberString(for: currentNumber, withCommas: true)
+        get { return Utilities.createNumberString(for: currentNumber, withCommas: true) }
+        set {}
     }
     
     mutating func setDigit(_ digit: Digit) {
         guard canAddDigit(digit) else { return }
         
-        let numberString = Utilities.createNumberString(for: newNumber)
-        newNumber = Decimal(string: numberString.appending("\(digit.rawValue)"))
+        let newNumberString = Utilities.createNumberString(for: newNumber)
+        newNumber = Decimal(string: newNumberString.appending("\(digit.rawValue)"))
     }
     
+    
+    // move this function later
+    mutating func appendOperation(to str: String, _ operation: ArithmeticOperation) -> String {
+        let newStr = str + operation.description
+        
+        return newStr
+    }
+    
+    // this isn't working
     mutating func setOperation(_ operation: ArithmeticOperation) {
-        guard var currentNumber = newNumber ?? result else { return }
-        
-        if let existingExpression = expression {
-            currentNumber = existingExpression.evaluate(with: currentNumber)
-        }
-        
-        expression = ArithmeticExpression(addend1: currentNumber, operation: operation)
-        
-        newNumber = nil
+        textDisplayed.append(operation.description)
     }
     
     mutating func toggleSign() {
@@ -73,15 +74,14 @@ struct Calculator {
     }
     
     mutating func backspace() {
+        var newNumberString = Utilities.createNumberString(for: newNumber, withCommas: false)
+        newNumberString = String(newNumberString.dropLast())
         
+        newNumber = Decimal(string: newNumberString)
     }
     
     mutating func evaluate() {
-        guard let currentNumber = newNumber, let expressionToEvaluate = expression else { return }
-        result = expressionToEvaluate.evaluate(with: currentNumber)
         
-        expression = nil
-        newNumber = nil
     }
     
     // MARK: - Checks
