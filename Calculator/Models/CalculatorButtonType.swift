@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 enum CalculatorButtonType: Hashable, CustomStringConvertible {
-    case digit (_ digit: Digit)
-    case operation (_ operation: ArithmeticOperation)
+    case digit(_ digit: Digit)
+    case operation(_ operation: ArithmeticOperation)
     case equals
     case negative
     case percent

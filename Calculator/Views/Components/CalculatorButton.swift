@@ -19,8 +19,8 @@ extension ContentView {
             }
             .buttonStyle(CalculatorButtonStyle(
                 size: calcButtonSize(),
-                backgroundColor: buttonType.backgroundColor,
-                foregroundColor: buttonType.foregroundColor,
+                backgroundColor: getBackgroundColor(for: buttonType),
+                foregroundColor: getForegroundColor(for: buttonType),
                 isWide: buttonType == .equals
             ))
         }
@@ -30,6 +30,23 @@ extension ContentView {
             let buttonCount: CGFloat = 4.0
             let spacingCount = buttonCount + 1
             return (screenWidth - (spacingCount * Constants.PADDING)) / buttonCount
+        }
+        
+        private func getBackgroundColor(for buttonType: CalculatorButtonType) -> Color {
+            /*if viewModel.isOperationButtonTypeSelected(buttonType) {
+                switch CalculatorApp().isDarkMode {
+                case true:
+                    return buttonType.foregroundColor
+                case false:
+                    return .init(red: 0.9, green: 0.9, blue: 0.9)
+                }
+            }
+            return buttonType.backgroundColor*/
+            return viewModel.isOperationButtonTypeSelected(buttonType) ? buttonType.foregroundColor : buttonType.backgroundColor
+        }
+        
+        private func getForegroundColor(for buttonType: CalculatorButtonType) -> Color {
+            return viewModel.isOperationButtonTypeSelected(buttonType) ? buttonType.backgroundColor : buttonType.foregroundColor
         }
     }
 }

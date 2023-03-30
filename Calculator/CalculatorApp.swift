@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct CalculatorApp: App {
-    @State private var isDarkMode = false
+    @State var isDarkMode = true
     
     var body: some Scene {
         WindowGroup {

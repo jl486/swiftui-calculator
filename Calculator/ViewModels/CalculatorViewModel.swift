@@ -41,5 +41,10 @@ extension ContentView {
                 calculator.evaluate()
             }
         }
+        
+        func isOperationButtonTypeSelected(_ buttonType: CalculatorButtonType) -> Bool {
+            guard case .operation(let operation) = buttonType else { return false }
+            return calculator.isOperationSelected(operation)
+        }
     }
 }

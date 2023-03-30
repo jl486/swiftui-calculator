@@ -104,7 +104,6 @@
 		F1C546D7296931A000109118 = {
 			isa = PBXGroup;
 			children = (
-				F1F3BBB329D141B700B6136D /* Utilities.swift */,
 				F1C546E2296931A000109118 /* Calculator */,
 				F1C546F3296931A100109118 /* CalculatorTests */,
 				F1C546FD296931A100109118 /* CalculatorUITests */,
@@ -127,6 +126,7 @@
 			children = (
 				F1C546E3296931A000109118 /* CalculatorApp.swift */,
 				F1F4EED2296F6B970086F48E /* Constants.swift */,
+				F1F3BBB329D141B700B6136D /* Utilities.swift */,
 				F1F4EED8296F75310086F48E /* Views */,
 				F121C8A829723CE20065D712 /* ViewModels */,
 				F1F4EED9296F7AC70086F48E /* Models */,
