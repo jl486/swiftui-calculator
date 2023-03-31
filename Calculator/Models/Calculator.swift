@@ -30,28 +30,35 @@ struct Calculator {
         didSet {
             guard newNumber != nil else { return }
             isNegative = false
+            isCarryingDecimal = false
         }
     }
-    
-    private var expression: ArithmeticExpression?
-    private var result: Decimal?
-    
-    private var isNegative: Bool = false
     
     private var currentNumber: Decimal? {
         get { newNumber ?? expression?.addend1 ?? result }
     }
     
     var textDisplayed: String {
-        return Utilities.createNumberString(for: currentNumber, withCommas: true)
+        return Utilities.createNumberString(for: currentNumber, isCarryingDecimal: isCarryingDecimal, withCommas: true)
     }
+    
+    private var containsDecimal: Bool {
+        return Utilities.createNumberString(for: currentNumber, isCarryingDecimal: isCarryingDecimal).contains(".")
+    }
+    
+    private var isCarryingDecimal: Bool = false
+    
+    private var expression: ArithmeticExpression?
+    private var result: Decimal?
+    
+    private var isNegative: Bool = false
 
     // MARK: - Calculator functions
     
     mutating func setDigit(_ digit: Digit) {
         guard canAddDigit(digit) else { return }
         
-        let newNumberString = Utilities.createNumberString(for: newNumber)
+        let newNumberString = Utilities.createNumberString(for: newNumber, isCarryingDecimal: isCarryingDecimal)
         newNumber = Decimal(string: newNumberString.appending("\(digit.rawValue)"))
     }
     
@@ -93,12 +100,15 @@ struct Calculator {
     }
     
     mutating func setDecimal() {
+        if containsDecimal { return }
         
+        isCarryingDecimal = true
+        print(isCarryingDecimal)
     }
     
     // backspace is buggy
     mutating func backspace() {
-        var newNumberString = Utilities.createNumberString(for: newNumber, withCommas: false)
+        var newNumberString = Utilities.createNumberString(for: currentNumber, isCarryingDecimal: isCarryingDecimal, withCommas: false)
         newNumberString = String(newNumberString.dropLast())
         
         newNumber = Decimal(string: newNumberString)
