@@ -38,13 +38,22 @@ struct Calculator {
         get { newNumber ?? expression?.addend1 ?? result }
     }
     
-    var textDisplayed: String {
-        return Utilities.createNumberString(for: currentNumber, isCarryingDecimal: isCarryingDecimal, withCommas: true)
+    private var containsDecimal: Bool {
+        return Utilities.createNumberString(
+            for: currentNumber,
+            isCarryingDecimal: isCarryingDecimal)
+        .contains(".")
     }
     
-    private var containsDecimal: Bool {
-        return Utilities.createNumberString(for: currentNumber, isCarryingDecimal: isCarryingDecimal).contains(".")
+    var textDisplayed: String {
+        return Utilities.createNumberString(
+            for: currentNumber,
+            isCarryingDecimal: isCarryingDecimal,
+            withCommas: true
+        )
     }
+    
+    var expressonInputted: String = ""
     
     private var isCarryingDecimal: Bool = false
     
@@ -58,7 +67,10 @@ struct Calculator {
     mutating func setDigit(_ digit: Digit) {
         guard canAddDigit(digit) else { return }
         
-        let newNumberString = Utilities.createNumberString(for: newNumber, isCarryingDecimal: isCarryingDecimal)
+        let newNumberString = Utilities.createNumberString(
+            for: newNumber,
+            isCarryingDecimal: isCarryingDecimal
+        )
         newNumber = Decimal(string: newNumberString.appending("\(digit.rawValue)"))
     }
     
@@ -108,7 +120,11 @@ struct Calculator {
     
     // backspace is buggy
     mutating func backspace() {
-        var newNumberString = Utilities.createNumberString(for: currentNumber, isCarryingDecimal: isCarryingDecimal, withCommas: false)
+        var newNumberString = Utilities.createNumberString(
+            for: newNumber,
+            isCarryingDecimal: isCarryingDecimal,
+            withCommas: false
+        )
         newNumberString = String(newNumberString.dropLast())
         
         newNumber = Decimal(string: newNumberString)

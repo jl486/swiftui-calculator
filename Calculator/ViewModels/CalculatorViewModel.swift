@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension ContentView {
+extension CalculatorView {
     final class CalculatorViewModel: ObservableObject {
         @Published private var calculator = Calculator()
         

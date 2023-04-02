@@ -13,16 +13,16 @@ struct CalculatorApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CalculatorView()
                 .preferredColorScheme(isDarkMode ? .dark : .light)
-                .environmentObject(ContentView.CalculatorViewModel())
+                .environmentObject(CalculatorView.CalculatorViewModel())
         }
     }
 }
 
 struct CalculatorApp_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(ContentView.CalculatorViewModel())
+        CalculatorView()
+            .environmentObject(CalculatorView.CalculatorViewModel())
     }
 }

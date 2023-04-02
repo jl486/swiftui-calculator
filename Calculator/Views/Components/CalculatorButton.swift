@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension ContentView {
+extension CalculatorView {
     struct CalculatorButton: View {
         
         @EnvironmentObject private var viewModel: CalculatorViewModel
