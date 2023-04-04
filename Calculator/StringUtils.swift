@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Utilities {
+struct StringUtils {
     static func createNumberString(for number: Decimal?,
                                    isNegative: Bool = false,
                                    isCarryingDecimal: Bool = false,

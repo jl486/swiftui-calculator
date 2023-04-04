@@ -29,7 +29,7 @@ extension CalculatorView {
             let screenWidth = UIScreen.main.bounds.width
             let buttonCount: CGFloat = 4.0
             let spacingCount = buttonCount + 1
-            return (screenWidth - (spacingCount * Constants.PADDING)) / buttonCount
+            return (screenWidth - (spacingCount * K.padding)) / buttonCount
         }
         
         private func getBackgroundColor(for buttonType: CalculatorButtonType) -> Color {

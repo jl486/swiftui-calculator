@@ -9,9 +9,6 @@ import SwiftUI
 
 struct CalculatorView: View {
     @EnvironmentObject private var viewModel: CalculatorViewModel
-    
-    @State private var isRotating: Bool = false
-    @State private var isHidden: Bool = false
 
     @State var value = "0"
     @State var currentNumber: Float = 0
@@ -22,7 +19,7 @@ struct CalculatorView: View {
                 settingsButton
                 VStack(alignment: .trailing) {
                     Spacer()
-                    Text("231")
+                    Text("102")
                         .foregroundColor(Color("TextColor"))
                         .font(.system(size: 30, weight: .medium))
                         .opacity(0.7)
@@ -31,7 +28,7 @@ struct CalculatorView: View {
                     resultDisplay
                     buttonPad
                 }
-                .padding(Constants.PADDING)
+                .padding(K.padding)
                 
             }
         }
@@ -52,7 +49,7 @@ extension CalculatorView {
                 Button(action: {
                     
                 }) {
-                    VStack {
+                    VStack(alignment: .leading) {
                         /*
                          Image(systemName: "gearshape.fill")
                          .resizable()
@@ -61,33 +58,13 @@ extension CalculatorView {
                          .padding(.leading, 18.0)*/
                         Rectangle()
                             .fill(.white)
-                            .frame(width: 27, height: 2)
-                            .rotationEffect(
-                                isRotating ? Angle(degrees: 47) : Angle(degrees: 0),
-                                anchor: .leading
-                            )
+                            .frame(width: K.menuIconWidth, height: K.menuIconHeight)
                         Rectangle()
                             .fill(.white)
-                            .frame(width: 27, height: 2)
-                            .scaleEffect(
-                                x: isHidden ? 0 : 1,
-                                y: isHidden ? 0 : 1,
-                                anchor: .leading
-                            )
-                            .opacity(isHidden ? 0 : 1)
+                            .frame(width: 20, height: 3)
                         Rectangle()
                             .fill(.white)
-                            .frame(width: 27, height: 2)
-                            .rotationEffect(
-                                isRotating ? Angle(degrees: -47) : Angle(degrees: 0),
-                                anchor: .leading
-                            )
-                    }
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.4)) {
-                            isRotating.toggle()
-                            isHidden.toggle()
-                        }
+                            .frame(width:K.menuIconWidth, height: 3)
                     }
                     .padding(.leading, 18.0)
                 }
@@ -108,9 +85,9 @@ extension CalculatorView {
     }
     
     private var buttonPad: some View {
-        VStack(spacing: Constants.PADDING) {
+        VStack(spacing: K.padding) {
             ForEach(viewModel.buttons, id: \.self) { row in
-                HStack(spacing: Constants.PADDING) {
+                HStack(spacing: K.padding) {
                     ForEach(row, id: \.self) { button in
                        CalculatorButton(buttonType: button)
                     }

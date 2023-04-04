@@ -8,6 +8,10 @@
 import Foundation
 import CoreGraphics
 
-struct Constants {
-    static let PADDING: CGFloat = 16.0
+struct K {
+    static let padding: CGFloat = 16.0
+    
+    static let menuIconWidth: CGFloat = 27
+    static let menuIconHeight: CGFloat = 3
+    
 }

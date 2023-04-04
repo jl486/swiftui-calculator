@@ -39,14 +39,14 @@ struct Calculator {
     }
     
     private var containsDecimal: Bool {
-        return Utilities.createNumberString(
+        return StringUtils.createNumberString(
             for: currentNumber,
             isCarryingDecimal: isCarryingDecimal)
         .contains(".")
     }
     
     var textDisplayed: String {
-        return Utilities.createNumberString(
+        return StringUtils.createNumberString(
             for: currentNumber,
             isCarryingDecimal: isCarryingDecimal,
             withCommas: true
@@ -67,7 +67,7 @@ struct Calculator {
     mutating func setDigit(_ digit: Digit) {
         guard canAddDigit(digit) else { return }
         
-        let newNumberString = Utilities.createNumberString(
+        let newNumberString = StringUtils.createNumberString(
             for: newNumber,
             isCarryingDecimal: isCarryingDecimal
         )
@@ -120,7 +120,7 @@ struct Calculator {
     
     // backspace is buggy
     mutating func backspace() {
-        var newNumberString = Utilities.createNumberString(
+        var newNumberString = StringUtils.createNumberString(
             for: newNumber,
             isCarryingDecimal: isCarryingDecimal,
             withCommas: false
