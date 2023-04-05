@@ -10,6 +10,7 @@ import SwiftUI
 
 extension CalculatorView {
     struct SideMenuButton: View {
+        var image: String
         var title: String
         
         @Binding var show: Bool
@@ -20,18 +21,18 @@ extension CalculatorView {
                     show.toggle()
                 }
             }, label: {
-                HStack(spacing: 0) {
-                    /*
+                HStack(spacing: 15) {
+                    
                     Image(systemName: image)
                         .font(.system(size: 22))
-                        .frame(width: 25, height: 25)*/
+                        .frame(width: 25, height: 25)
                     
                     Text(title)
                         .font(.title3)
                         .fontWeight(.semibold)
                 }
                 .padding(.vertical, 10)
-                .padding(.trailing)
+                .padding(.trailing, 65)
             })
             .padding(.top, 5)
             .foregroundColor(Color.white.opacity(0.5))

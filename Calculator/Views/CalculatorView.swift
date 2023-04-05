@@ -65,7 +65,7 @@ extension CalculatorView {
         VStack {
             HStack {
                 Button(action: {
-                    withAnimation(.timingCurve(0.5, 0, 0.5, 1)) {
+                    withAnimation(.timingCurve(0.5, 0, 0.5, 1, duration: 0.5)) {
                         show.toggle()
                     }
                 }) {
@@ -101,7 +101,7 @@ extension CalculatorView {
                     HStack {
                         // The X button
                         Button(action: {
-                            withAnimation(.timingCurve(0.5, 0, 0.5, 1)) {
+                            withAnimation(.timingCurve(0.5, 0, 0.5, 1, duration: 0.5)) {
                                 show.toggle()
                             }
                         }, label: {
@@ -116,27 +116,29 @@ extension CalculatorView {
                     .padding(.top, edges.top)
                     
                     VStack(alignment: .leading, content: {
-                        Text("Menu")
-                            .font(.title)
+                        
+                        Text("Calculator")
+                            .font(.system(size: 30))
+                            .fontDesign(.rounded)
                             .fontWeight(.bold)
-                        SideMenuButton(title: "Settings", show: $show)
-                        SideMenuButton(title: "Contact", show: $show)
-                        SideMenuButton(title: "Fjakfe", show: $show)
+                        SideMenuButton(image: "house", title: "Home", show: $show)
+                        SideMenuButton(image: "gearshape", title: "Settings", show: $show)
+                        SideMenuButton(image: "info.circle", title: "About", show: $show)
                     })
                     .padding(.top)
                     
                     Spacer(minLength: 0)
                 }
-                .frame(width: screenWidth * 0.8) // Later replace long thing with @State var screenWidth
+                .frame(width: screenWidth * 0.8)
                 .background(Color(red: 0.1, green: 0.1, blue: 0.1))
                 
                 Spacer(minLength: 0)
             }
-            .background(Color.black.opacity(show ? 0.3 : 0))
             .offset(x: show ? 0 : screenWidth - (screenWidth + (screenWidth * 0.8)))
             
         }
         .ignoresSafeArea(.all, edges: .all)
+        .background(Color.black.opacity(show ? 0.3 : 0))
     }
     
     private var resultDisplay: some View {
