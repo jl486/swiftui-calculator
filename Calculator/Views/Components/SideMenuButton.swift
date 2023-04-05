@@ -30,7 +30,7 @@ extension CalculatorView {
                         .font(.title3)
                         .fontWeight(.semibold)
                 }
-                .padding(.vertical)
+                .padding(.vertical, 10)
                 .padding(.trailing)
             })
             .padding(.top, 5)

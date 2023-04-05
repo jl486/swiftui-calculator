@@ -24,7 +24,7 @@ struct CalculatorView: View {
     @State var edges = UIApplication.safeAreas
     @State var screenWidth = UIScreen.main.bounds.width
     
-    @State private var show = false
+    @State private var show = true // Change to false once designing is done
     
     var body: some View {
         NavigationStack {
@@ -65,7 +65,7 @@ extension CalculatorView {
         VStack {
             HStack {
                 Button(action: {
-                    withAnimation(.spring()) {
+                    withAnimation(.timingCurve(0.5, 0, 0.5, 1)) {
                         show.toggle()
                     }
                 }) {
@@ -101,7 +101,7 @@ extension CalculatorView {
                     HStack {
                         // The X button
                         Button(action: {
-                            withAnimation(.spring()) {
+                            withAnimation(.timingCurve(0.5, 0, 0.5, 1)) {
                                 show.toggle()
                             }
                         }, label: {
@@ -115,14 +115,15 @@ extension CalculatorView {
                     .padding()
                     .padding(.top, edges.top)
                     
-                    VStack(alignment: .leading, spacing: 0, content: {
+                    VStack(alignment: .leading, content: {
                         Text("Menu")
+                            .font(.title)
+                            .fontWeight(.bold)
                         SideMenuButton(title: "Settings", show: $show)
                         SideMenuButton(title: "Contact", show: $show)
                         SideMenuButton(title: "Fjakfe", show: $show)
                     })
                     .padding(.top)
-                    .padding(.leading, 0)
                     
                     Spacer(minLength: 0)
                 }
