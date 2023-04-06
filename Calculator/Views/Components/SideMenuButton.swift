@@ -32,7 +32,7 @@ extension CalculatorView {
                         .fontWeight(.semibold)
                 }
                 .padding(.vertical, 10)
-                .padding(.trailing, 65)
+                .padding(.trailing, 100)
             })
             .padding(.top, 5)
             .foregroundColor(Color.white.opacity(0.5))
