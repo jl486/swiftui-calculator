@@ -65,7 +65,7 @@ extension CalculatorView {
         VStack {
             HStack {
                 Button(action: {
-                    withAnimation(.timingCurve(0.5, 0, 0.5, 1, duration: 0.5)) {
+                    withAnimation(.timingCurve(0.5, 0, 0.5, 1, duration: 0.3)) {
                         show.toggle()
                     }
                 }) {
@@ -81,10 +81,10 @@ extension CalculatorView {
                             .frame(width: K.menuIconWidth, height: K.menuIconHeight)
                         Rectangle()
                             .fill(.white)
-                            .frame(width: K.menuIconWidth * 0.65, height: K.menuIconHeight)
+                            .frame(width: K.menuIconWidth, height: K.menuIconHeight)
                         Rectangle()
                             .fill(.white)
-                            .frame(width: K.menuIconWidth * 0.4, height: K.menuIconHeight)
+                            .frame(width: K.menuIconWidth, height: K.menuIconHeight)
                     }
                     .padding(.leading, 18.0)
                 }
@@ -101,7 +101,7 @@ extension CalculatorView {
                     HStack {
                         // The X button
                         Button(action: {
-                            withAnimation(.timingCurve(0.5, 0, 0.5, 1, duration: 0.5)) {
+                            withAnimation(.timingCurve(0.5, 0, 0.5, 1, duration: 0.3)) {
                                 show.toggle()
                             }
                         }, label: {
@@ -121,6 +121,22 @@ extension CalculatorView {
                             .font(.system(size: 30))
                             .fontDesign(.rounded)
                             .fontWeight(.bold)
+                            .overlay {
+                                LinearGradient(
+                                    colors: [Color(.lightBlue), Color(.lightGreen)],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                                .mask(
+                                    Text("Calculator")
+                                        .font(.system(size: 30))
+                                        .fontDesign(.rounded)
+                                        .fontWeight(.bold)
+                                )
+                            }
+                        Divider()
+                            .frame(width: 200)
+                            .background(.gray)
                         SideMenuButton(image: "house", title: "Home", show: $show)
                         SideMenuButton(image: "gearshape", title: "Settings", show: $show)
                         SideMenuButton(image: "info.circle", title: "About", show: $show)
