@@ -77,13 +77,13 @@ extension CalculatorView {
                          .foregroundColor(Color("SecondaryColor"))
                          .padding(.leading, 18.0)*/
                         Rectangle()
-                            .fill(.white)
+                            .fill(.gray)
                             .frame(width: K.menuIconWidth, height: K.menuIconHeight)
                         Rectangle()
-                            .fill(.white)
-                            .frame(width: K.menuIconWidth, height: K.menuIconHeight)
+                            .fill(.gray)
+                            .frame(width: K.menuIconWidth * 0.8, height: K.menuIconHeight)
                         Rectangle()
-                            .fill(.white)
+                            .fill(.gray)
                             .frame(width: K.menuIconWidth, height: K.menuIconHeight)
                     }
                     .padding(.leading, 18.0)
